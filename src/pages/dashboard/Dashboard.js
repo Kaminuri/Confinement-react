@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import Button_create_party from './components/button_create_party/button_create_party';
-import Button_join_another_party from './components/button_join_another_party/button_join_another_party';
-import Menu_delete_party from './components/Menu_delete_party/Menu_delete_party';
+import ButtonCreateParty from './components/button_create_party/button_create_party';
+import ButtonJoinAnotherParty from './components/button_join_another_party/button_join_another_party';
+import MenuDeleteParty from './components/Menu_delete_party/Menu_delete_party';
 import Box from '@material-ui/core/Box';
 /**
  * Class App
@@ -75,7 +75,7 @@ class App extends React.Component {
             <Grid item xs={12} justifyContent="center">
               <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
                 <Box p={1} bgcolor="transparent">
-                  <Button_create_party />
+                  <ButtonCreateParty />
                 </Box>
               </Box>
             </Grid>
@@ -85,7 +85,7 @@ class App extends React.Component {
           <Grid item xs={12} justifyContent="center">
             <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
               <Box p={1} bgcolor="transparent">
-                <Button_join_another_party />
+                <ButtonJoinAnotherParty />
               </Box>
             </Box>
           </Grid>
@@ -128,7 +128,7 @@ class TableRow extends React.Component {
                   </Typography>
                 </Grid>
                 <Grid item xs={3}>
-                  <Menu_delete_party />
+                  <MenuDeleteParty />
                 </Grid>
               </Grid>
 
