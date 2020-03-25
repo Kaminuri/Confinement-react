@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Grid, CircularProgress, Typography, Button, Tabs, Tab, TextField, Fade} from "@material-ui/core";
+import {Grid, CircularProgress, Typography, Button, Tabs, Tab, Fade} from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
@@ -21,14 +21,15 @@ function Login(props) {
   var userDispatch = useUserDispatch();
 
   // local
-  var [isLoading, setIsLoading] = useState(false);
-  var [error, setError] = useState(null);
-  var [activeTabId, setActiveTabId] = useState(0);
-  var [firstNameValue, setFirstNameValue] = useState("");
-  var [lastNameValue,  setLastNameValue]  = useState("");
-  var [nickNameValue,  setNickNameValue]  = useState("");
-  var [emailValue,     setEmailValue]     = useState("");
-  var [passwordValue,  setPasswordValue]  = useState("");
+  var [isLoading, setIsLoading]                     = useState(false);
+  var [error, setError]                             = useState(null);
+  var [activeTabId, setActiveTabId]                 = useState(0);
+  var [firstNameValue, setFirstNameValue]           = useState("");
+  var [lastNameValue,  setLastNameValue]            = useState("");
+  var [nickNameValue,  setNickNameValue]            = useState("");
+  var [emailValue,     setEmailValue]               = useState("");
+  var [passwordValue,  setPasswordValue]            = useState("");
+  var [verifpasswordValue,  setVerifPasswordValue]  = useState("");
 
   return (
     <Grid container className={classes.container}>
@@ -63,7 +64,7 @@ function Login(props) {
                   Quelque chose ne vas pas avec votre mot de passe ou votre login ? :(
                 </Typography>
               </Fade>
-              <ValidatorForm>
+              <ValidatorForm name="formLogin" /*ref="form" onSubmit={this.handleSubmit}*/ onError={errors => console.log(errors)}>
                 <TextValidator
                   id="email"
                   validators={['required', 'isEmail']}
@@ -75,6 +76,7 @@ function Login(props) {
                   }}
                   value={emailValue}
                   onChange={e => setEmailValue(e.target.value)}
+                  errorMessages={['Ce champ est obligatoire', "Ceci n'est pas un email"]}
                   margin="normal"
                   placeholder="Adresse email"
                   type="email"
@@ -91,6 +93,7 @@ function Login(props) {
                   }}
                   value={passwordValue}
                   onChange={e => setPasswordValue(e.target.value)}
+                  errorMessages={['Ce champ est obligatoire']}
                   margin="normal"
                   placeholder="Mot de passe"
                   type="password"
@@ -140,86 +143,112 @@ function Login(props) {
                   Quelque chose ne vas pas avec votre mot de passe :(
                 </Typography>
               </Fade>
-              <TextField
-                id="firstname"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={firstNameValue}
-                onChange={e => setFirstNameValue(e.target.value)}
-                margin="normal"
-                placeholder="Prénom"
-                type="text"
-                fullWidth
-                required
-              />
-              <TextField
-                id="lastname"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={lastNameValue}
-                onChange={e => setLastNameValue(e.target.value)}
-                margin="normal"
-                placeholder="Nom"
-                type="text"
-                fullWidth
-                required
-              />
-              <TextField
-                id="nickname"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={nickNameValue}
-                onChange={e => setNickNameValue(e.target.value)}
-                margin="normal"
-                placeholder="Pseudo"
-                type="text"
-                fullWidth
-                required
-              />
-              <TextField
-                id="email"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={emailValue}
-                onChange={e => setEmailValue(e.target.value)}
-                margin="normal"
-                placeholder="Adresse mail"
-                type="email"
-                fullWidth
-                required
-              />
-              <TextField
-                id="password"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={passwordValue}
-                onChange={e => setPasswordValue(e.target.value)}
-                margin="normal"
-                placeholder="Mot de passe"
-                type="password"
-                fullWidth
-                required
-              />
+              <ValidatorForm> 
+                <TextValidator
+                  id="firstname"
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={firstNameValue}
+                  validators={['required']}
+                  onChange={e => setFirstNameValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Prénom"
+                  type="text"
+                  fullWidth
+                  required
+                />
+                <TextValidator
+                  id="lastname"
+                  validators={['required']}
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={lastNameValue}
+                  onChange={e => setLastNameValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Nom"
+                  type="text"
+                  fullWidth
+                  required
+                />
+                <TextValidator
+                  id="nickname"
+                  validators={['required']}
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={nickNameValue}
+                  onChange={e => setNickNameValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Pseudo"
+                  type="text"
+                  fullWidth
+                  required
+                />
+                <TextValidator
+                  id="email"
+                  validators={['required', 'isEmail']}
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={emailValue}
+                  onChange={e => setEmailValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Adresse mail"
+                  type="email"
+                  fullWidth
+                  required
+                />
+                <TextValidator
+                  id="password"
+                  validators={['required']}
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={passwordValue}
+                  onChange={e => setPasswordValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Mot de passe"
+                  type="password"
+                  fullWidth
+                  required
+                />
+                
+                <TextValidator
+                  id="verifpasswordValue"
+                  validators={['required', 'isPasswordMatch']}
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={verifpasswordValue}
+                  onChange={e => setVerifPasswordValue(e.target.value)}
+                  errorMessages={['Ce champ est obligatoire', "Le mot de passe est différent du premier saisie"]}
+                  margin="normal"
+                  placeholder="confirmation de mot de passe"
+                  type="password"
+                  fullWidth
+                  required
+                />
+              </ValidatorForm>
               <div className={classes.creatingButtonContainer}>
                 {isLoading ? (
                   <CircularProgress size={26} />
@@ -240,7 +269,8 @@ function Login(props) {
                       passwordValue.length === 0 ||
                       firstNameValue.length === 0 ||
                       lastNameValue.length === 0 ||
-                      nickNameValue.length === 0 
+                      nickNameValue.length === 0 ||
+                      passwordValue !== verifpasswordValue
                     }
                     size="large"
                     variant="contained"
