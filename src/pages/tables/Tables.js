@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Box} from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 
 // components
@@ -31,9 +31,11 @@ const datatableData = [
 ];
 
 export default function Tables() {
+  var token = (localStorage.getItem('id_token'));
   return (
     <>
       <PageTitle title="Tables" />
+      <Box>{token}</Box>
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <MUIDataTable

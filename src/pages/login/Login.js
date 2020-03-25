@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import {
-  Grid,
-  CircularProgress,
-  Typography,
-  Button,
-  Tabs,
-  Tab,
-  TextField,
-  Fade,
-} from "@material-ui/core";
+import {Grid, CircularProgress, Typography, Button, Tabs, Tab, TextField, Fade} from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 // styles
 import useStyles from "./styles";
@@ -32,9 +24,11 @@ function Login(props) {
   var [isLoading, setIsLoading] = useState(false);
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
-  var [nameValue, setNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("");
-  var [passwordValue, setPasswordValue] = useState("");
+  var [firstNameValue, setFirstNameValue] = useState("");
+  var [lastNameValue,  setLastNameValue]  = useState("");
+  var [nickNameValue,  setNickNameValue]  = useState("");
+  var [emailValue,     setEmailValue]     = useState("");
+  var [passwordValue,  setPasswordValue]  = useState("");
 
   return (
     <Grid container className={classes.container}>
@@ -55,9 +49,6 @@ function Login(props) {
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Restez chez vous
-              </Typography>
               <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
                 &nbsp;Se connecter avec Google
@@ -72,50 +63,53 @@ function Login(props) {
                   Quelque chose ne vas pas avec votre mot de passe ou votre login ? :(
                 </Typography>
               </Fade>
-              <TextField
-                id="email"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
-                margin="normal"
-                placeholder="Adresse email"
-                type="email"
-                fullWidth
-                required
-              />
-              <TextField
-                id="password"
-                InputProps={{
-                  classes: {
-                    underline: classes.textFieldUnderline,
-                    input: classes.textField,
-                  },
-                }}
-                value={passwordValue}
-                onChange={e => setPasswordValue(e.target.value)}
-                margin="normal"
-                placeholder="Mot de passe"
-                type="password"
-                fullWidth
-                required
-              />
+              <ValidatorForm>
+                <TextValidator
+                  id="email"
+                  validators={['required', 'isEmail']}
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={emailValue}
+                  onChange={e => setEmailValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Adresse email"
+                  type="email"
+                  fullWidth
+                  required
+                />
+                <TextValidator
+                  id="password"
+                  InputProps={{
+                    classes: {
+                      underline: classes.textFieldUnderline,
+                      input: classes.textField,
+                    },
+                  }}
+                  value={passwordValue}
+                  onChange={e => setPasswordValue(e.target.value)}
+                  margin="normal"
+                  placeholder="Mot de passe"
+                  type="password"
+                  fullWidth
+                  required
+                />
+              </ValidatorForm>
               <div className={classes.formButtons}>
                 {isLoading ? (
                   <CircularProgress size={26} className={classes.loginLoader} />
                 ) : (
                   <Button
                     disabled={
-                      loginValue.length === 0 || passwordValue.length === 0
+                      emailValue.length === 0 || passwordValue.length === 0
                     }
                     onClick={() =>
                       loginUser(
                         userDispatch,
-                        loginValue,
+                        emailValue,
                         passwordValue,
                         props.history,
                         setIsLoading,
@@ -141,31 +135,58 @@ function Login(props) {
           )}
           {activeTabId === 1 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Bienvenue !
-              </Typography>
-              <Typography variant="h2" className={classes.subGreeting}>
-                Créer votre compte
-              </Typography>
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Quelque chose ne vas pas avec votre mot de passe :(
                 </Typography>
               </Fade>
               <TextField
-                id="name"
+                id="firstname"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
                     input: classes.textField,
                   },
                 }}
-                value={nameValue}
-                onChange={e => setNameValue(e.target.value)}
+                value={firstNameValue}
+                onChange={e => setFirstNameValue(e.target.value)}
                 margin="normal"
-                placeholder="Nom, prénom"
+                placeholder="Prénom"
                 type="text"
                 fullWidth
+                required
+              />
+              <TextField
+                id="lastname"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={lastNameValue}
+                onChange={e => setLastNameValue(e.target.value)}
+                margin="normal"
+                placeholder="Nom"
+                type="text"
+                fullWidth
+                required
+              />
+              <TextField
+                id="nickname"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={nickNameValue}
+                onChange={e => setNickNameValue(e.target.value)}
+                margin="normal"
+                placeholder="Pseudo"
+                type="text"
+                fullWidth
+                required
               />
               <TextField
                 id="email"
@@ -175,8 +196,8 @@ function Login(props) {
                     input: classes.textField,
                   },
                 }}
-                value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                value={emailValue}
+                onChange={e => setEmailValue(e.target.value)}
                 margin="normal"
                 placeholder="Adresse mail"
                 type="email"
@@ -207,7 +228,7 @@ function Login(props) {
                     onClick={() =>
                       loginUser(
                         userDispatch,
-                        loginValue,
+                        emailValue,
                         passwordValue,
                         props.history,
                         setIsLoading,
@@ -215,9 +236,11 @@ function Login(props) {
                       )
                     }
                     disabled={
-                      loginValue.length === 0 ||
+                      emailValue.length === 0 ||
                       passwordValue.length === 0 ||
-                      nameValue.length === 0
+                      firstNameValue.length === 0 ||
+                      lastNameValue.length === 0 ||
+                      nickNameValue.length === 0 
                     }
                     size="large"
                     variant="contained"
