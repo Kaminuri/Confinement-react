@@ -16,7 +16,7 @@ import classnames from "classnames";
 import useStyles from "./styles";
 
 // logo
-import logo from "./logo.svg";
+import logo from "../../images/confinement.png";
 import google from "../../images/google.svg";
 
 // context
@@ -40,7 +40,6 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Confinement</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -57,11 +56,11 @@ function Login(props) {
           {activeTabId === 0 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
-                Bonne journée à tous
+                Restez chez vous
               </Typography>
               <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
+                &nbsp;Se connecter avec Google
               </Button>
               <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
@@ -84,9 +83,10 @@ function Login(props) {
                 value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
+                placeholder="Adresse email"
                 type="email"
                 fullWidth
+                required
               />
               <TextField
                 id="password"
@@ -99,9 +99,10 @@ function Login(props) {
                 value={passwordValue}
                 onChange={e => setPasswordValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 type="password"
                 fullWidth
+                required
               />
               <div className={classes.formButtons}>
                 {isLoading ? (
@@ -162,7 +163,7 @@ function Login(props) {
                 value={nameValue}
                 onChange={e => setNameValue(e.target.value)}
                 margin="normal"
-                placeholder="Full Name"
+                placeholder="Nom, prénom"
                 type="text"
                 fullWidth
               />
@@ -177,9 +178,10 @@ function Login(props) {
                 value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
+                placeholder="Adresse mail"
                 type="email"
                 fullWidth
+                required
               />
               <TextField
                 id="password"
@@ -192,9 +194,10 @@ function Login(props) {
                 value={passwordValue}
                 onChange={e => setPasswordValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                placeholder="Mot de passe"
                 type="password"
                 fullWidth
+                required
               />
               <div className={classes.creatingButtonContainer}>
                 {isLoading ? (
@@ -222,7 +225,7 @@ function Login(props) {
                     fullWidth
                     className={classes.createAccountButton}
                   >
-                    Create your account
+                    Créer un compte
                   </Button>
                 )}
               </div>
@@ -233,23 +236,22 @@ function Login(props) {
               </div>
               <Button
                 size="large"
-                className={classnames(
+                className={classnames( 
                   classes.googleButton,
                   classes.googleButtonCreating,
                 )}
               >
                 <img src={google} alt="google" className={classes.googleIcon} />
-                &nbsp;Sign in with Google
+                &nbsp;Se connecter avec Google
               </Button>
             </React.Fragment>
           )}
         </div>
         <Typography color="primary" className={classes.copyright}>
-          © 2014-2019 Flatlogic, LLC. All rights reserved.
+          © 2019-2020 Confinement Expernet CDA2, MRRD. All rights reserved.
         </Typography>
       </div>
     </Grid>
   );
 }
-
 export default withRouter(Login);
