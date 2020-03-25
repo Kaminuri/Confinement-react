@@ -25,7 +25,6 @@ export default function App() {
         />
         <PrivateRoute path="/app" component={Layout} />
         <PublicRoute path="/login" component={Login} />
-    
       </Switch>
     </HashRouter>
   );

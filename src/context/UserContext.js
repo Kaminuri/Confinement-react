@@ -59,7 +59,6 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
       setError(null)
       setIsLoading(false)
       dispatch({ type: 'LOGIN_SUCCESS' })
-
       history.push('/app/dashboard')
     }, 2000);
   } else {
