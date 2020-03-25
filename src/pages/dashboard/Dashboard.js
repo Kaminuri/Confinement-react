@@ -83,12 +83,12 @@ class App extends React.Component {
               data={person} />)}
           </Grid>
           <Grid item xs={12} justifyContent="center">
-              <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
-                <Box p={1} bgcolor="transparent">
-                  <Button_join_another_party />
-                </Box>
+            <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
+              <Box p={1} bgcolor="transparent">
+                <Button_join_another_party />
               </Box>
-            </Grid>
+            </Box>
+          </Grid>
         </Container>
 
       </div>
@@ -106,10 +106,11 @@ class TableRow extends React.Component {
     return (
       <Grid item xs={3}>
 
-        
-          <Card className=""  >
-          <Link href='/app/tables#/app/tables' target="_blank">
-            <CardActionArea>
+
+        <Card className=""  >
+
+          <CardActionArea>
+            <Link href='/app/tables#/app/tables' target="_blank" color="black">
               <CardMedia
 
                 component="img"
@@ -118,23 +119,32 @@ class TableRow extends React.Component {
                 image={this.props.data.img}
                 title="Contemplative Reptile"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {this.props.data.name}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {this.props.data.soustitre}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  
-                </Typography>
-
-              </CardContent>
-            </CardActionArea>
             </Link>
-            <Menu_delete_party/>
-          </Card>
-        
+            <CardContent>
+              <Grid container spacing={3}>
+                <Grid item xs={9}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {this.props.data.name}
+                  </Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Menu_delete_party />
+                </Grid>
+              </Grid>
+
+              <Typography gutterBottom variant="h5" component="h2">
+                {this.props.data.soustitre}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+
+              </Typography>
+
+            </CardContent>
+          </CardActionArea>
+
+
+        </Card>
+
 
       </Grid>
 
