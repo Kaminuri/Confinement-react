@@ -1,23 +1,22 @@
+/**
+ * IMPORT
+ */
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import {
-  Route,
-  Switch,
-  Redirect,
-  withRouter,
-} from "react-router-dom";
-// pages
-import Tables from "../../pages/tables";
-import Icons from "../../pages/icons";
+
+/**
+ * Class App
+ * 
+ * Données test 
+ * 
+ */
 class App extends React.Component {
   constructor() {
     super();
@@ -79,6 +78,9 @@ class App extends React.Component {
 }
 
 
+/**
+ * Class TableRow
+ */
 class TableRow extends React.Component {
 
   render() {
