@@ -16,6 +16,7 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Tables from "../../pages/tables";
+import Head from "../../pages/dashboard";
 import Icons from "../../pages/icons";
 
 // context
@@ -40,6 +41,8 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/app/tables" component={Tables} />
+              <Route path="/app/head" component={Head} />
+              <Route path="/app/dashboard" component={Head} />
               <Route
                 exact
                 path="/app/ui"
