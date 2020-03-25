@@ -10,7 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-
+import Button_create_party from './components/button_create_party/button_create_party';
+import Button_join_another_party from './components/button_join_another_party/button_join_another_party';
+import Menu_delete_party from './components/Menu_delete_party/Menu_delete_party';
+import Box from '@material-ui/core/Box';
 /**
  * Class App
  * 
@@ -66,10 +69,26 @@ class App extends React.Component {
     return (
       <div>
         <Container maxWidth="lg">
+
           <Grid container spacing={3}>
+
+            <Grid item xs={12} justifyContent="center">
+              <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
+                <Box p={1} bgcolor="transparent">
+                  <Button_create_party />
+                </Box>
+              </Box>
+            </Grid>
             {this.state.data.map((person, i) => <TableRow key={i}
               data={person} />)}
           </Grid>
+          <Grid item xs={12} justifyContent="center">
+              <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
+                <Box p={1} bgcolor="transparent">
+                  <Button_join_another_party />
+                </Box>
+              </Box>
+            </Grid>
         </Container>
 
       </div>
@@ -87,9 +106,9 @@ class TableRow extends React.Component {
     return (
       <Grid item xs={3}>
 
-        <Link href='/app/tables#/app/tables' target="_blank"> 
+        
           <Card className=""  >
-
+          <Link href='/app/tables#/app/tables' target="_blank">
             <CardActionArea>
               <CardMedia
 
@@ -107,13 +126,15 @@ class TableRow extends React.Component {
                   {this.props.data.soustitre}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {this.props.data.age}
+                  
                 </Typography>
 
               </CardContent>
             </CardActionArea>
+            </Link>
+            <Menu_delete_party/>
           </Card>
-        </Link>
+        
 
       </Grid>
 
