@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 export default class AuthService {
     // Initializing important variables
     constructor(domain) {
-        this.domain = domain || 'http://localhost:8080' // API server domain
+        this.domain = domain || 'http://localhost:44314' // API server domain
         this.fetch = this.fetch.bind(this) // React binding stuff
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
@@ -10,14 +10,14 @@ export default class AuthService {
 
     login(username, password) {
         // Get a token from api server using the fetch api
-        return this.fetch(`${this.domain}/login`, {
+        return this.fetch(`${this.domain}/Login`, {
             method: 'POST',
             body: JSON.stringify({
                 username,
                 password
             })
         }).then(res => {
-            this.setToken(res.token) // Setting the token in localStorage
+            this.setToken(res.data.token) // Setting the token in localStorage
             return Promise.resolve(res);
         })
     }
