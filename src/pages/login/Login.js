@@ -12,7 +12,7 @@ import logo from "../../images/confinement.png";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
 
 function Login(props) {
   var classes = useStyles();
@@ -64,7 +64,16 @@ function Login(props) {
                   Quelque chose ne vas pas avec votre mot de passe ou votre login ? :(
                 </Typography>
               </Fade>
-              <ValidatorForm name="formLogin" /*ref="form" onSubmit={this.handleSubmit}*/ onError={errors => console.log(errors)}>
+              <ValidatorForm name="formLogin" onSubmit={() =>
+                      loginUser(
+                        userDispatch,
+                        emailValue,
+                        passwordValue,
+                        props.history,
+                        setIsLoading,
+                        setError,
+                      )
+                    } /*ref="form" onSubmit={this.handleSubmit}*/ onError={errors => console.log(errors)}>
                 <TextValidator
                   id="email"
                   validators={['required', 'isEmail']}
@@ -143,7 +152,7 @@ function Login(props) {
                   Quelque chose ne vas pas avec votre mot de passe :(
                 </Typography>
               </Fade>
-              <ValidatorForm> 
+              <ValidatorForm name="register"  /*ref="form" onSubmit={this.handleSubmit}*/> 
                 <TextValidator
                   id="firstname"
                   InputProps={{
@@ -154,6 +163,7 @@ function Login(props) {
                   }}
                   value={firstNameValue}
                   validators={['required']}
+                  errorMessages={['Vous devez saisir un prénom']}
                   onChange={e => setFirstNameValue(e.target.value)}
                   margin="normal"
                   placeholder="Prénom"
@@ -164,6 +174,7 @@ function Login(props) {
                 <TextValidator
                   id="lastname"
                   validators={['required']}
+                  errorMessages={['Vous devez saisir un nom']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,
@@ -181,6 +192,7 @@ function Login(props) {
                 <TextValidator
                   id="nickname"
                   validators={['required']}
+                  errorMessages={['Saisissez votre pseudo']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,
@@ -198,6 +210,7 @@ function Login(props) {
                 <TextValidator
                   id="email"
                   validators={['required', 'isEmail']}
+                  errorMessages={['Ce champ est obligatoire', 'Vous devez saisir un email']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,
@@ -232,7 +245,7 @@ function Login(props) {
                 
                 <TextValidator
                   id="verifpasswordValue"
-                  validators={['required', 'isPasswordMatch']}
+                  validators={['required']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,
@@ -253,17 +266,19 @@ function Login(props) {
                 {isLoading ? (
                   <CircularProgress size={26} />
                 ) : (
-                  <Button
+                  <Button name="register"
                     onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        emailValue,
+                      registerUser(
+                        firstNameValue,
+                        lastNameValue,
                         passwordValue,
+                        emailValue,
+                        nickNameValue,
+                        userDispatch,
                         props.history,
                         setIsLoading,
                         setError,
-                      )
-                    }
+                      )}
                     disabled={
                       emailValue.length === 0 ||
                       passwordValue.length === 0 ||
