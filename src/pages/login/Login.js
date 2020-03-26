@@ -163,6 +163,7 @@ function Login(props) {
                   }}
                   value={firstNameValue}
                   validators={['required']}
+                  errorMessages={['Vous devez saisir un prénom']}
                   onChange={e => setFirstNameValue(e.target.value)}
                   margin="normal"
                   placeholder="Prénom"
@@ -173,6 +174,7 @@ function Login(props) {
                 <TextValidator
                   id="lastname"
                   validators={['required']}
+                  errorMessages={['Vous devez saisir un nom']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,
@@ -190,6 +192,7 @@ function Login(props) {
                 <TextValidator
                   id="nickname"
                   validators={['required']}
+                  errorMessages={['Saisissez votre pseudo']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,
@@ -207,6 +210,7 @@ function Login(props) {
                 <TextValidator
                   id="email"
                   validators={['required', 'isEmail']}
+                  errorMessages={['Ce champ est obligatoire', 'Vous devez saisir un email']}
                   InputProps={{
                     classes: {
                       underline: classes.textFieldUnderline,

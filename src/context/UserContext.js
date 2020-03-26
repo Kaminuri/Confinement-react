@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+//import axios from 'axios';
 
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
@@ -49,26 +49,41 @@ function useUserDispatch() {
 export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser };
 
 // ###########################################################
-
+  //function loginUser(dispatch, login, CurrentPassword, history, setIsLoading, setError) {
+  //  setError(false);
+  //  setIsLoading(true);
+  //  var sha1 = require('sha1');
+  //  let pwd = sha1(CurrentPassword) 
+  //  const credentials = {
+  //    email: login,
+  //    password: pwd
+  //  };
+  //  console.log('res.data');
+  //  let token = "";
+  //  axios.post(`https://localhost:44314/api/Login`, { credentials })
+  //      .then(res => {
+  //        token = res.data.token;
+  //      });
+  //  if (token != "") {
+  //    setTimeout(() => {
+  //      localStorage.setItem('id_token', token)
+  //      setError(null)
+  //      setIsLoading(false)
+  //      dispatch({ type: 'LOGIN_SUCCESS' })
+  //      history.push('/app/dashboard')
+  //    }, 2000);
+  //  } else {
+  //    dispatch({ type: "LOGIN_FAILURE" });
+  //    setError(true);
+  //    setIsLoading(false);
+  //  }
+  //}
+// ######################################################################################
+//Sans api
 function loginUser(dispatch, login, CurrentPassword, history, setIsLoading, setError) {
-  setError(false);
-  setIsLoading(true);
-  var sha1 = require('sha1');
-  let pwd = sha1(CurrentPassword) 
-  const credentials = {
-    email: login,
-    password: pwd
-  };
-  console.log('res.data');
-  let token = "";
-  axios.post(`https://localhost:44314/api/Login`, { credentials })
-      .then(res => {
-        token = res.data.token;
-        console.log(res.data.token);
-      });
-  if (token != "") {
+  if (login !== "" || CurrentPassword !=="") {
     setTimeout(() => {
-      localStorage.setItem('id_token', token)
+      localStorage.setItem('id_token', 1)
       setError(null)
       setIsLoading(false)
       dispatch({ type: 'LOGIN_SUCCESS' })
@@ -78,29 +93,29 @@ function loginUser(dispatch, login, CurrentPassword, history, setIsLoading, setE
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
-  }
+  } 
 }
 
-
 function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, CurrentEmail, CurrentNickname, dispatch, history, setIsLoading, setError) {
-  var sha1 = require('sha1');
-  let password = sha1(CurrentPassword)  
-  const player = {
-      firstname: CurrentFirstname,
-      password: password,
-      lastname: CurrentLastname,
-      email: CurrentEmail,
-      nickname: CurrentNickname
-    };
-    let token = "";
+//  var sha1 = require('sha1');
+//  let password = sha1(CurrentPassword)  
+//  const player = {
+//      firstname: CurrentFirstname,
+//      password: password,
+//      lastname: CurrentLastname,
+//      email: CurrentEmail,
+//      nickname: CurrentNickname
+//    };
+//    let token = "";
 
-    axios.post(`https://localhost:44314/api/Players`, { player })
-      .then(res => {
-        token = res.data;
-      });
+//    axios.post(`https://localhost:44314/api/Players`, { player })
+//      .then(res => {
+//        token = res.data;
+//      });
 
       setTimeout(() => {
-        localStorage.setItem('id_token', token)
+        localStorage.setItem('id_token', 1 )
+        ///localStorage.setItem('id_token', token)
         setError(null)
         setIsLoading(false)
         dispatch({ type: 'LOGIN_SUCCESS' })
