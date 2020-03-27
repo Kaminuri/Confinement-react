@@ -36,6 +36,9 @@ import {
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
 import Avatar from '@material-ui/core/Avatar';
+
+import logo from "../../images/confinement.png";
+
 const messages = [
   {
     id: 0,
@@ -139,6 +142,7 @@ export default function Header(props) {
         <Typography variant="h6" weight="medium" className={classes.logotype}>
           Confinement
         </Typography>
+        <img src={logo} alt="logo" className={classes.logotypeImage} height="50"  />
         <div className={classes.grow} />
         
     
@@ -191,7 +195,7 @@ export default function Header(props) {
               classes.headerMenuItem,
             )}
           >
-            <AccountIcon className={classes.profileMenuIcon} /> Tasks
+            <AccountIcon className={classes.profileMenuIcon} /> Historiques
           </MenuItem>
           <MenuItem
             className={classNames(
