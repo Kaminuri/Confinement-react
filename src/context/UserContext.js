@@ -112,7 +112,6 @@ function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, Curren
 //      .then(res => {
 //        token = res.data;
 //      });
-
       setTimeout(() => {
         localStorage.setItem('id_token', 1 )
         ///localStorage.setItem('id_token', token)

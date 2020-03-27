@@ -1,19 +1,15 @@
 import React from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-
 // components
 import Layout from "./Layout";
-
 // pages
 import Login from "../pages/login";
-
 // context
 import { useUserState } from "../context/UserContext";
 
 export default function App() {
   // global
   var { isAuthenticated } = useUserState();
-
   return (
     <HashRouter>
       <Switch>
@@ -28,9 +24,7 @@ export default function App() {
       </Switch>
     </HashRouter>
   );
-
   // #######################################################################
-
   function PrivateRoute({ component, ...rest }) {
     return (
       <Route

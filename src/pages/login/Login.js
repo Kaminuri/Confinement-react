@@ -3,23 +3,18 @@ import {Grid, CircularProgress, Typography, Button, Tabs, Tab, Fade} from "@mate
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-
 // styles
 import useStyles from "./styles";
-
 // logo
 import logo from "../../images/confinement.png";
 import google from "../../images/google.svg";
-
 // context
 import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
 
 function Login(props) {
   var classes = useStyles();
-
   // global
   var userDispatch = useUserDispatch();
-
   // local
   var [isLoading, setIsLoading]                     = useState(false);
   var [error, setError]                             = useState(null);
@@ -31,6 +26,15 @@ function Login(props) {
   var [passwordValue,  setPasswordValue]            = useState("");
   var [verifpasswordValue,  setVerifPasswordValue]  = useState("");
 
+  const BoutonDeNavigation = (props, context) => (
+    <button type="button" onClick={() => context.router.history.push('/ma-nouvelle-url')}>Changer de page</button>
+  );
+  BoutonDeNavigation.contextTypes = {
+    router: React.PropTypes.shape({
+      history: React.PropTypes.object.isRequired
+    })
+  };
+  
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
