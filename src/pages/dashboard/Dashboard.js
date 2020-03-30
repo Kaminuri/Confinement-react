@@ -14,6 +14,7 @@ import ButtonCreateParty from './components/button_create_party/button_create_pa
 import ButtonJoinAnotherParty from './components/button_join_another_party/button_join_another_party';
 import MenuDeleteParty from './components/Menu_delete_party/Menu_delete_party';
 import Box from '@material-ui/core/Box';
+
 /**
  * Class App
  * 
@@ -21,9 +22,12 @@ import Box from '@material-ui/core/Box';
  * 
  */
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+
+    super(props);
     this.state = {
+      items: {},
+      isLoaded: false,
       data:
         [
           {
@@ -64,37 +68,63 @@ class App extends React.Component {
           }
         ]
     }
+
+  }
+
+
+  componentDidMount() {
+    fetch('http://35.195.109.244/api/Players')
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        })
+      });
   }
   render() {
-    return (
-      <div>
-        <Container maxWidth="lg">
+    const { isLoaded, items } = this.state;
+    if (!isLoaded) {
+      return <div>Loading...</div>
+    }
+    else {
+      return (
+        <div>
+          <ul>
+            {items.map(item =>
+              <li key={item.id_player}>{item.firstname}{item.lastname}</li>
+            )}
+          </ul>
+          <Container maxWidth="lg">
 
-          <Grid container spacing={3}>
+            <Grid container spacing={3}>
 
+              <Grid item xs={12} justifyContent="center">
+                <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
+                  <Box p={1} bgcolor="transparent">
+                    <ButtonCreateParty />
+                  </Box>
+                </Box>
+              </Grid>
+              {this.state.data.map((person, i) => <TableRow key={i}
+                data={person} />)}
+            </Grid>
             <Grid item xs={12} justifyContent="center">
               <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
                 <Box p={1} bgcolor="transparent">
-                  <ButtonCreateParty />
+                  <ButtonJoinAnotherParty />
                 </Box>
               </Box>
             </Grid>
-            {this.state.data.map((person, i) => <TableRow key={i}
-              data={person} />)}
-          </Grid>
-          <Grid item xs={12} justifyContent="center">
-            <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
-              <Box p={1} bgcolor="transparent">
-                <ButtonJoinAnotherParty />
-              </Box>
-            </Box>
-          </Grid>
-        </Container>
+          </Container>
 
-      </div>
-    );
+        </div>
+      );
+    }
   }
+
 }
+
 
 
 /**
