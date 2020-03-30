@@ -92,6 +92,43 @@ const notifications = [
   },
 ];
 
+class getUser extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: {},
+      isLoaded: false,
+    }
+  }
+  componentDidMount() {
+    fetch('http://35.195.109.244/api/Players')
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        })
+      });
+  }
+  render() {
+    const { isLoaded, items } = this.state;
+    if (!isLoaded) {
+      return <div>Loading...</div>
+    }
+    else {
+      return (
+        <div >
+          <ul>
+            {items.map(item =>
+              <li key={item.id_player}>{item.firstname}{item.lastname}</li>
+            )}
+          </ul>
+        </div>
+      )
+    }
+  }
+}
+
 export default function Header(props) {
   var classes = useStyles();
 
@@ -108,6 +145,7 @@ export default function Header(props) {
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
 
+  
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
@@ -129,23 +167,24 @@ export default function Header(props) {
               }}
             />
           ) : (
-            <MenuIcon
-              classes={{
-                root: classNames(
-                  classes.headerIcon,
-                  classes.headerIconCollapse,
-                ),
-              }}
-            />
-          )}
+              <MenuIcon
+                classes={{
+                  root: classNames(
+                    classes.headerIcon,
+                    classes.headerIconCollapse,
+                  ),
+                }}
+              />
+            )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
           Confinement
         </Typography>
-        <img src={logo} alt="logo" className={classes.logotypeImage} height="50"  />
+        <getUser></getUser>
+        <img src={logo} alt="logo" className={classes.logotypeImage} height="50" />
         <div className={classes.grow} />
-        
-    
+
+
         <IconButton
           aria-haspopup="true"
           color="inherit"
@@ -154,9 +193,9 @@ export default function Header(props) {
           onClick={e => setProfileMenu(e.currentTarget)}
         >
           Akey&nbsp;
-          <Avatar alt="Travis Howard" src="https://www.nautiljon.com/images/perso/00/15/hachikuji_mayoi_7551.jpg"/>
+          <Avatar alt="Travis Howard" src="https://www.nautiljon.com/images/perso/00/15/hachikuji_mayoi_7551.jpg" />
         </IconButton>
-        
+
 
         <Menu
           id="profile-menu"
