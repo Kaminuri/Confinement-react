@@ -92,7 +92,7 @@ const notifications = [
   },
 ];
 
-class getUser extends React.Component {
+class GetUser extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -118,11 +118,44 @@ class getUser extends React.Component {
     else {
       return (
         <div >
-          <ul>
-            {items.map(item =>
-              <li key={item.id_player}>{item.firstname}{item.lastname}</li>
-            )}
-          </ul>
+          {items.map(item =>
+            <span>{item.firstname} {item.lastname}</span>
+          )}
+        </div>
+      )
+    }
+  }
+}
+
+class GetLogin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: {},
+      isLoaded: false,
+    }
+  }
+  componentDidMount() {
+    fetch('http://35.195.109.244/api/Players')
+      .then(res => { return res.json(); })
+      .then(json => {
+        this.setState({
+          isLoaded: true,
+          items: json,
+        })
+      });
+  }
+  render() {
+    const { isLoaded, items } = this.state;
+    if (!isLoaded) {
+      return <div>Loading...</div>
+    }
+    else {
+      return (
+        <div >
+          {items.map(item =>
+            <span>{item.nickname} </span>
+          )}
         </div>
       )
     }
@@ -145,7 +178,7 @@ export default function Header(props) {
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
 
-  
+
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
@@ -180,7 +213,7 @@ export default function Header(props) {
         <Typography variant="h6" weight="medium" className={classes.logotype}>
           Confinement
         </Typography>
-        <getUser></getUser>
+
         <img src={logo} alt="logo" className={classes.logotypeImage} height="50" />
         <div className={classes.grow} />
 
@@ -192,7 +225,7 @@ export default function Header(props) {
           aria-controls="profile-menu"
           onClick={e => setProfileMenu(e.currentTarget)}
         >
-          Akey&nbsp;
+          <GetLogin></GetLogin> &nbsp;
           <Avatar alt="Travis Howard" src="https://www.nautiljon.com/images/perso/00/15/hachikuji_mayoi_7551.jpg" />
         </IconButton>
 
@@ -208,7 +241,7 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              Rénald BOOZ
+              <GetUser></GetUser>
             </Typography>
             <Typography
               className={classes.profileMenuLink}
