@@ -108,7 +108,7 @@ function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, Curren
     };
     let token = "";
 
-    axios.post(`https://localhost:44314/api/Players`, { player })
+    axios.post(`http://35.195.109.244/api/Players`, { player })
       .then(res => {
         token = res.data;
       });
