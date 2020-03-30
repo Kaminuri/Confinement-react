@@ -97,25 +97,25 @@ function loginUser(dispatch, login, CurrentPassword, history, setIsLoading, setE
 }
 
 function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, CurrentEmail, CurrentNickname, dispatch, history, setIsLoading, setError) {
-//  var sha1 = require('sha1');
-//  let password = sha1(CurrentPassword)  
-//  const player = {
-//      firstname: CurrentFirstname,
-//      password: password,
-//      lastname: CurrentLastname,
-//      email: CurrentEmail,
-//      nickname: CurrentNickname
-//    };
-//    let token = "";
+  var sha1 = require('sha1');
+  let password = sha1(CurrentPassword)  
+  const player = {
+      firstname: CurrentFirstname,
+      password: password,
+      lastname: CurrentLastname,
+      email: CurrentEmail,
+      nickname: CurrentNickname
+    };
+    let token = "";
 
-//    axios.post(`https://localhost:44314/api/Players`, { player })
-//      .then(res => {
-//        token = res.data;
-//      });
+    axios.post(`https://localhost:44314/api/Players`, { player })
+      .then(res => {
+        token = res.data;
+      });
 
       setTimeout(() => {
-        localStorage.setItem('id_token', 1 )
-        ///localStorage.setItem('id_token', token)
+        //localStorage.setItem('id_token', 1 )
+        localStorage.setItem('id_token', token)
         setError(null)
         setIsLoading(false)
         dispatch({ type: 'LOGIN_SUCCESS' })
