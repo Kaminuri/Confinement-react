@@ -3,6 +3,7 @@ import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
   NotificationsNone as NotificationsIcon,
+  
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
   BorderAll as TableIcon,
@@ -39,9 +40,9 @@ const structure = [
   },
   { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 3,
-    label: "Notifications",
-    link: "/app/notifications",
+    id: 15,
+    label: "games",
+    link: "/app/games",
     icon: <NotificationsIcon />,
   },
   {

@@ -1,0 +1,6 @@
+{
+  "name": "games",
+  "version": "0.0.0",
+  "main": "Games.js",
+  "private": true
+}
