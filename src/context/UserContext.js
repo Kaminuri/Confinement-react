@@ -63,7 +63,7 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, regist
    };
    
    let token = "";
-   axios.post(`https://localhost:44314/api/Login`, { credentials })
+   axios.post(`https://35.195.109.244/api/Login`, { credentials })
        .then( res => {
         token = res.data;
         if (token != "") {
@@ -111,7 +111,7 @@ function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, Curren
       nickname: CurrentNickname
     };
     let token = "";
-    axios.post(`https://localhost:44314/api/Players`, { player })
+    axios.post(`https://35.195.109.244/api/Players`, { player })
       .then(res => {
         token = res.data;
       });
