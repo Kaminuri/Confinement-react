@@ -73,7 +73,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    fetch('http://35.195.109.244/api/Players')
+    fetch('https://35.195.109.244/api/Players')
       .then(res => { return res.json(); })
       .then(json => {
         this.setState({
@@ -89,12 +89,7 @@ class App extends React.Component {
     }
     else {
       return (
-        <div>
-          <ul>
-            {items.map(item =>
-              <li key={item.id_player}>{item.firstname}{item.lastname}</li>
-            )}
-          </ul>
+       
           <Container maxWidth="lg">
 
             <Grid container spacing={3}>
@@ -117,8 +112,6 @@ class App extends React.Component {
               </Box>
             </Grid>
           </Container>
-
-        </div>
       );
     }
   }

@@ -58,8 +58,8 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, regist
    var sha1 = require('sha1');
    let pwd = sha1(CurrentPassword) 
    const credentials = {
-     email: "test@email.com",
-     password: "QL0AFWMIX8NRZTKeof9cXsvbvu8="
+     email: login,
+     password: pwd
    };
    
    let token = "";
@@ -68,7 +68,7 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, regist
         token = res.data;
         if (token != "") {
           setTimeout(() => {
-            sessionStorage.setItem('id_token', token)
+            localStorage.setItem('id_token', token)
             setError(null)
             setIsLoading(false)
             dispatch({ type: 'LOGIN_SUCCESS' })
@@ -114,15 +114,14 @@ function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, Curren
     axios.post(`https://35.195.109.244/api/Players`, { player })
       .then(res => {
         token = res.data;
+        setTimeout(() => {
+          localStorage.setItem('id_token', token )
+          setError(null)
+          setIsLoading(false)
+          dispatch({ type: 'LOGIN_SUCCESS' })
+          history.push('/app/dashboard')
+        }, 2000);
       });
-      setTimeout(() => {
-        localStorage.setItem('id_token', 1 )
-        //localStorage.setItem('id_token', token)
-        setError(null)
-        setIsLoading(false)
-        dispatch({ type: 'LOGIN_SUCCESS' })
-        history.push('/app/dashboard')
-      }, 2000);
 }
 
 function signOut(dispatch, history) {

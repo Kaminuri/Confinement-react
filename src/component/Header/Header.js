@@ -19,7 +19,7 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import classNames from "classnames";
-
+import axios from 'axios';
 // styles
 import useStyles from "./styles";
 
@@ -92,40 +92,7 @@ const notifications = [
   },
 ];
 
-class GetUser extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: {},
-      isLoaded: false,
-    }
-  }
-  componentDidMount() {
-    fetch('http://35.195.109.244/api/Players')
-      .then(res => { return res.json(); })
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          items: json,
-        })
-      });
-  }
-  render() {
-    const { isLoaded, items } = this.state;
-    if (!isLoaded) {
-      return <div>Loading...</div>
-    }
-    else {
-      return (
-        <div >
-          {items.map(item =>
-            <span>{item.firstname} {item.lastname}</span>
-          )}
-        </div>
-      )
-    }
-  }
-}
+ 
 
 class GetLogin extends React.Component {
   constructor(props) {
@@ -136,14 +103,19 @@ class GetLogin extends React.Component {
     }
   }
   componentDidMount() {
-    fetch('http://35.195.109.244/api/Players')
-      .then(res => { return res.json(); })
-      .then(json => {
+    const token = {
+      token: localStorage.getItem('id_token')
+    };
+    axios.post('https://35.195.109.244/api/Tokens/', { token })
+       .then( res => {
         this.setState({
           isLoaded: true,
-          items: json,
+          items: res.data,
         })
-      });
+        return res.data;
+       })
+      
+    console.log(token);
   }
   render() {
     const { isLoaded, items } = this.state;
@@ -153,9 +125,8 @@ class GetLogin extends React.Component {
     else {
       return (
         <div >
-          {items.map(item =>
-            <span>{item.nickname} </span>
-          )}
+            <span>{items.nickname} </span>
+          
         </div>
       )
     }
@@ -241,16 +212,15 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              <GetUser></GetUser>
             </Typography>
             <Typography
               className={classes.profileMenuLink}
               component="a"
               color="primary"
-              href="https://hanime.tv/"
+              href="https://test.tv/"
               target="_blank"
             >
-              hanime.tv
+              Lien
             </Typography>
           </div>
           <MenuItem
