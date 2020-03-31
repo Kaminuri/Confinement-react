@@ -11,6 +11,8 @@ function userReducer(state, action) {
       return { ...state, isAuthenticated: true };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
+    case "LOGIN_FAILURE":
+      return { ...state, isAuthenticated: false };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -56,46 +58,47 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, regist
    var sha1 = require('sha1');
    let pwd = sha1(CurrentPassword) 
    const credentials = {
-     email: login,
-     password: pwd
+     email: "test@email.com",
+     password: "QL0AFWMIX8NRZTKeof9cXsvbvu8="
    };
-   console.log('res.data');
+   
    let token = "";
    axios.post(`https://localhost:44314/api/Login`, { credentials })
-       .then(res => {
-         token = res.data.token;
+       .then( res => {
+        token = res.data;
+        if (token != "") {
+          setTimeout(() => {
+            sessionStorage.setItem('id_token', token)
+            setError(null)
+            setIsLoading(false)
+            dispatch({ type: 'LOGIN_SUCCESS' })
+            history.push('/app/dashboard')
+          }, 2000);
+        } else {
+          dispatch({ type: "LOGIN_FAILURE" });
+          setError(true);
+          setIsLoading(false);
+        }
        });
-   if (token != "") {
-     setTimeout(() => {
-       sessionStorage.setItem('id_token', token)
-       setError(null)
-       setIsLoading(false)
-       dispatch({ type: 'LOGIN_SUCCESS' })
-       history.push('/app/dashboard')
-     }, 2000);
-   } else {
-     dispatch({ type: "LOGIN_FAILURE" });
-     setError(true);
-     setIsLoading(false);
-   }
+    console.log(token);
  }
 // ######################################################################################
 //Sans api
-//function loginUser(dispatch, login, CurrentPassword, history, setIsLoading, setError) {
-//  if (login !== "" || CurrentPassword !=="") {
-//    setTimeout(() => {
-//      localStorage.setItem('id_token', 1)
-//      setError(null)
-//      setIsLoading(false)
-//      dispatch({ type: 'LOGIN_SUCCESS' })
-//      history.push('/app/dashboard')
-//    }, 2000);
-//  } else {
-//    dispatch({ type: "LOGIN_FAILURE" });
-//    setError(true);
-//    setIsLoading(false);
-//  } 
-//}
+/* function loginUser(dispatch, login, CurrentPassword, history, setIsLoading, setError) {
+  if (login !== "" || CurrentPassword !=="") {
+    setTimeout(() => {
+    localStorage.setItem('id_token', 1)
+      setError(null)
+     setIsLoading(false)
+      dispatch({ type: 'LOGIN_SUCCESS' })
+      history.push('/app/dashboard')
+    }, 2000);
+ } else {
+    dispatch({ type: "LOGIN_FAILURE" });
+    setError(true);
+    setIsLoading(false);
+  } 
+} */
 
 function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, CurrentEmail, CurrentNickname, dispatch, history, setIsLoading, setError) {
   var sha1 = require('sha1');
@@ -113,8 +116,8 @@ function registerUser(CurrentFirstname, CurrentLastname, CurrentPassword, Curren
         token = res.data;
       });
       setTimeout(() => {
-        //localStorage.setItem('id_token', 1 )
-        localStorage.setItem('id_token', token)
+        localStorage.setItem('id_token', 1 )
+        //localStorage.setItem('id_token', token)
         setError(null)
         setIsLoading(false)
         dispatch({ type: 'LOGIN_SUCCESS' })

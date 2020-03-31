@@ -26,14 +26,6 @@ function Login(props) {
   var [passwordValue,  setPasswordValue]            = useState("");
   var [verifpasswordValue,  setVerifPasswordValue]  = useState("");
 
-  const BoutonDeNavigation = (props, context) => (
-    <button type="button" onClick={() => context.router.history.push('/ma-nouvelle-url')}>Changer de page</button>
-  );
-  BoutonDeNavigation.contextTypes = {
-    router: React.PropTypes.shape({
-      history: React.PropTypes.object.isRequired
-    })
-  };
   
   return (
     <Grid container className={classes.container}>
