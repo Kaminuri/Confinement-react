@@ -91,8 +91,8 @@ class App extends React.Component {
       return (
         <Container maxWidth="lg">
           <Grid container spacing={3}>
-            <Grid item xs={12} justifycontent="center">
-              <Box display="flex" justifycontent="center" m={1} p={1} bgcolor="transparent">
+            <Grid item xs={12} justifyContent="center">
+              <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
                 <Box p={1} bgcolor="transparent">
                   <ButtonCreateParty />
                 </Box>
@@ -101,8 +101,8 @@ class App extends React.Component {
             {this.state.data.map((person, i) => <TableRow key={i}
               data={person} />)}
           </Grid>
-          <Grid item xs={12} justifycontent="center">
-            <Box display="flex" justifycontent="center" m={1} p={1} bgcolor="transparent">
+          <Grid item xs={12} justifyContent="center">
+            <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
               <Box p={1} bgcolor="transparent">
                 <ButtonJoinAnotherParty />
               </Box>
