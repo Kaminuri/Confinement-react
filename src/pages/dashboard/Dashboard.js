@@ -85,33 +85,30 @@ class App extends React.Component {
   render() {
     const { isLoaded, items } = this.state;
     if (!isLoaded) {
-      return <div>Loading...</div>
+      return "Loading..."
     }
     else {
       return (
-       
-          <Container maxWidth="lg">
-
-            <Grid container spacing={3}>
-
-              <Grid item xs={12} justifyContent="center">
-                <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
-                  <Box p={1} bgcolor="transparent">
-                    <ButtonCreateParty />
-                  </Box>
-                </Box>
-              </Grid>
-              {this.state.data.map((person, i) => <TableRow key={i}
-                data={person} />)}
-            </Grid>
-            <Grid item xs={12} justifyContent="center">
-              <Box display="flex" justifyContent="center" m={1} p={1} bgcolor="transparent">
+        <Container maxWidth="lg">
+          <Grid container spacing={3}>
+            <Grid item xs={12} justifycontent="center">
+              <Box display="flex" justifycontent="center" m={1} p={1} bgcolor="transparent">
                 <Box p={1} bgcolor="transparent">
-                  <ButtonJoinAnotherParty />
+                  <ButtonCreateParty />
                 </Box>
               </Box>
             </Grid>
-          </Container>
+            {this.state.data.map((person, i) => <TableRow key={i}
+              data={person} />)}
+          </Grid>
+          <Grid item xs={12} justifycontent="center">
+            <Box display="flex" justifycontent="center" m={1} p={1} bgcolor="transparent">
+              <Box p={1} bgcolor="transparent">
+                <ButtonJoinAnotherParty />
+              </Box>
+            </Box>
+          </Grid>
+        </Container>
       );
     }
   }
@@ -128,14 +125,10 @@ class TableRow extends React.Component {
   render() {
     return (
       <Grid item xs={3}>
-
-
-        <Card className=""  >
-
+        <Card  >
           <CardActionArea>
-            <Link href='/app/tables#/app/tables' target="_blank" color="black">
+            <Link href='/app/tables#/app/tables' target="_blank" color="textPrimary">
               <CardMedia
-
                 component="img"
                 alt="Contemplative Reptile"
                 height="300" width="400"
@@ -143,34 +136,28 @@ class TableRow extends React.Component {
                 title="Contemplative Reptile"
               />
             </Link>
-            <CardContent>
-              <Grid container spacing={3}>
-                <Grid item xs={9}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {this.props.data.name}
-                  </Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <MenuDeleteParty />
+            <CardContent >
+              <Grid>
+                <Grid container spacing={3}>
+                  <Grid item xs={9}>
+                    <Typography gutterBottom variant="subtitle1" component="h2">
+                      {this.props.data.name}
+                    </Typography>
+                    <Typography gutterBottom variant="subtitle2" component="h2">
+                      {this.props.data.soustitre}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <MenuDeleteParty />
+                  </Grid>
                 </Grid>
               </Grid>
-
-              <Typography gutterBottom variant="h5" component="h2">
-                {this.props.data.soustitre}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-
-              </Typography>
-
             </CardContent>
           </CardActionArea>
-
-
         </Card>
-
-
       </Grid>
-
     );
   }
 }

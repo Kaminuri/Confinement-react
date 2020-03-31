@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Box, Container, ButtonGroup } from '@material-ui/core';
 
 const options = [
   'Supprimer',
@@ -24,7 +25,7 @@ export default function LongMenu() {
   };
 
   return (
-    <div>
+    <Box>
       <IconButton
         aria-label="more"
         aria-controls="long-menu"
@@ -52,6 +53,6 @@ export default function LongMenu() {
           </MenuItem>
         ))}
       </Menu>
-    </div>
+      </Box>
   );
 }

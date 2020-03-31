@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
+import Box from '@material-ui/core/Box';
 import ComboBoxGames from '../../../../component/ComboBoxGames/ComboBoxGames';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -54,7 +55,7 @@ var [idworldmaster]             = useState(1);
   };
 
   const body = (
-    <div style={modalStyle} className={classes.paper}>
+    <Box style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">Création de monde</h2>
       <p id="simple-modal-description">
         Veuillez saisir les informations demandées, Créer votre monde.
@@ -69,12 +70,12 @@ var [idworldmaster]             = useState(1);
                         idworldmaster
                       )}>Créer la partie</Button>
          
-    </div>
+    </Box>
   );
 
 
       return (
-        <div className={classes.root}>
+        <Box>
           <Button variant="contained" color="primary" onClick={handleOpen}>
             Créer une partie
           </Button>
@@ -86,6 +87,6 @@ var [idworldmaster]             = useState(1);
             >
               {body}
           </Modal>
-        </div>
+          </Box>
       );
 }
