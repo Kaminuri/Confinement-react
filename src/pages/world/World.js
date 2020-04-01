@@ -13,8 +13,8 @@ export default function World() {
   var token = (localStorage.getItem('id_token'));
   return (
     <>
-      <PageTitle title="Hello This new games" />
-      <Box>{token}</Box>
+      <PageTitle title="Hello This new games" button="Action"/>
+      <Box>here {token}</Box>
       <ComboBoxGames/>
     </>
   );

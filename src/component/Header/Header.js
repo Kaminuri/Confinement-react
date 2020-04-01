@@ -183,9 +183,10 @@ export default function Header(props) {
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
           Confinement
+          
         </Typography>
 
-        <img src={logo} alt="logo" className={classes.logotypeImage} height="50" />
+        
         <div className={classes.grow} />
 
 

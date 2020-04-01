@@ -35,7 +35,7 @@ export default function Tables() {
   return (
     <>
       <PageTitle title="Tables" />
-      <Box>{token}</Box>
+      <Box>here {token}</Box>
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <MUIDataTable

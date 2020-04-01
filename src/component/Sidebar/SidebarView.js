@@ -24,7 +24,7 @@ const structure = [
   { id: 0, label: 'Dashboard', link: '/app/dashboard', icon: <HomeIcon /> },
   { id: 1, label: 'Typography', link: '/app/typography', icon: <TypographyIcon /> },
   { id: 2, label: 'Tables', link: '/app/tables', icon: <TableIcon /> },
-  { id: 3, label: 'Notifications', link: '/app/notifications', icon: <NotificationsIcon />},
+  { id: 3, label: 'World', link: '/app/world', icon: <NotificationsIcon />},
   { id: 15, label: 'Games', link: '/app/games', icon: <HomeIcon /> },
   {
     id: 4,
