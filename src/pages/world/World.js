@@ -1,6 +1,11 @@
 import React from "react";
-import { Grid, Box} from "@material-ui/core";
+import TabPanel from "./components/TabPanel"
+import SwipeableTemporaryDrawer from "./components/NpcDrawer"
+import { Widget } from 'react-chat-widget';
 
+import 'react-chat-widget/lib/styles.css';
+
+import Grid from '@material-ui/core/Grid';
 // components
 import PageTitle from "../../component/PageTitle";
 
@@ -13,9 +18,11 @@ export default function World() {
   var token = (localStorage.getItem('id_token'));
   return (
     <>
-      <PageTitle title="Hello This new games" button="Action"/>
-      <Box>here {token}</Box>
-      <ComboBoxGames/>
+        <TabPanel />
+        <div className="App">
+        <Widget />
+        </div>
+        <SwipeableTemporaryDrawer/>
     </>
   );
 }

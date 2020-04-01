@@ -53,18 +53,6 @@ class App extends React.Component {
             "name": "Le retour [Gaby]",
             "soustitre": "ANIMA BEYOND FANTASY",
             "img": "https://cdn1.philibertnet.com/326204/anima-core-exxet.jpg"
-          },
-          {
-            "id": 2,
-            "name": "Sandstorm [Yoshi]",
-            "soustitre": "NAHEULBEUK",
-            "img": "https://images-na.ssl-images-amazon.com/images/I/81rq-9SVZeL.jpg"
-          },
-          {
-            "id": 3,
-            "name": "Phénissia [Mina]",
-            "soustitre": "SHADES",
-            "img": "https://redcdn.net/hpimg15/pics/133805cofindenza2.jpg"
           }
         ]
     }
@@ -127,7 +115,7 @@ class TableRow extends React.Component {
       <Grid item xs={3}>
         <Card  >
           <CardActionArea>
-            <Link href='/app/tables#/app/tables' target="_blank" color="textPrimary">
+            <Link href='#/app/world' color="textPrimary">
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
