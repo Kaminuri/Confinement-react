@@ -8,7 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.47",
     "@material-ui/styles": "^4.3.0",
     "apexcharts": "^3.8.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "express-jwt": "^5.3.1",
     "font-awesome": "^4.7.0",
